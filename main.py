@@ -42,7 +42,7 @@ while opcao != 4:
             if chute_usuario == numero_secreto:
                 print('--' * 15)
                 print('{:^30}'.format(' VOCÊ ACERTOU! '))
-                print(f'Você acertou em {tentativas} tentativas')
+                print(f'Você acertou em {tentativas} tentativa(s)')
                 print('--' * 15)
                 acerto = True
                 pygame.mixer.music.load('audio_de_acerto.mp3')
@@ -67,19 +67,31 @@ while opcao != 4:
     elif opcao == 2:
         itens = ['Pedra', 'Papel', 'Tesoura']
         computador = randint(0, 2)
-        print('--' * 15)
-        print('{:=^30}'.format(' JOKENPÔ '))
-        print('--' * 15)
-        print('''Escolha sua jogada:
+        while True:
+            print('--' * 15)
+            print('{:=^30}'.format(' JOKENPÔ '))
+            print('--' * 15)
+            print('''Escolha sua jogada:
 [ 0 ] PEDRA
 [ 1 ] PAPEL
 [ 2 ] TESOURA''')
-        if not audio_jokenpo_tocado:
-            pygame.mixer.music.load('audio_jokenpo_menu.mp3')
-            pygame.mixer.music.play()
-            sleep(4) 
-            audio_jokenpo_tocado = True
-        jogador = int(input('Qual é sua opção? '))
+            if not audio_jokenpo_tocado:
+                pygame.mixer.music.load('audio_jokenpo_menu.mp3')
+                pygame.mixer.music.play()
+                sleep(4) 
+                audio_jokenpo_tocado = True
+
+            jogador = int(input('Qual é sua opção? '))
+            if jogador in [0, 1, 2]:
+                break
+            else:
+                print('--' * 17)
+                print('Opção inválida. Tente novamente.')
+                print('--' * 17)
+                pygame.mixer.music.load('audio_opcao_invalida.mp3')
+                pygame.mixer.music.play()
+                sleep(3)
+
         print('--' * 15)
         print('JO...')
         pygame.mixer.music.load('audio_JO.mp3')
@@ -96,8 +108,7 @@ while opcao != 4:
         print('--' * 15)
         print(f'COMPUTADOR: ({itens[computador]})')
         print(f'VOCÊ: ({itens[jogador]})')
-        print('--' * 15)
-
+        print('--' * 15)    
         if computador == 0:
             if jogador == 0:
                 print('{:^30}'.format(' EMPATE '))
@@ -107,7 +118,6 @@ while opcao != 4:
                 print('{:^30}'.format(' VOCÊ VENCEU! '))
                 pygame.mixer.music.load('audio_de_acerto.mp3')
                 pygame.mixer.music.play()
-
             elif jogador == 2:
                 print('{:^30}'.format(' COMPUTADOR VENCEU! '))
                 pygame.mixer.music.load('audio_de_erro.mp3')
@@ -190,9 +200,9 @@ while opcao != 4:
         print('--' * 15)
         print('{:^30}'.format(' FINALIZANDO...'))
         print('--' * 15)
-        pygame.mixer.music.load('audio_finalizando.mp3')
+        pygame.mixer.music.load('audio_finalizando_programa.mp3')
         pygame.mixer.music.play()
-        sleep(1)
+        sleep(2)
     else:
         print('--' * 17)
         print('Opção inválida. Tente novamente.')
