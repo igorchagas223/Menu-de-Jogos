@@ -1,11 +1,18 @@
 from random import randint
 from time import sleep
 import pygame
+import os
+
 pygame.init()
+pygame.mixer.init()
+
+AUDIO_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'audios.py')
+
 opcao = 0
 audio_menu_tocado = False 
 audio_jokenpo_tocado = False
 audio_adivinhacao_tocado = False
+
 while opcao != 4:
     print('--' * 15)
     print('{:=^30}'.format(' JOGOS '))
@@ -17,7 +24,7 @@ while opcao != 4:
 [ 4 ] SAIR DO PROGRAMA''')
     sleep(2.5)
     if not audio_menu_tocado:
-        pygame.mixer.music.load('audio_menu_jogos.mp3')
+        pygame.mixer.music.load(os.path.join(AUDIO_DIR, 'audio_menu_jogos.mp3'))
         pygame.mixer.music.play()
         sleep(7) 
         audio_menu_tocado = True
@@ -31,7 +38,7 @@ while opcao != 4:
         print('{:=^30}'.format(' ADIVINHAÇÃO '))
         print('--' * 15)
         if not audio_adivinhacao_tocado:
-            pygame.mixer.music.load('audio_adivinhacao_menu.mp3')
+            pygame.mixer.music.load(os.path.join(AUDIO_DIR, 'audio_adivinhacao_menu.mp3'))
             pygame.mixer.music.play()
             audio_adivinhacao_tocado = True
         
@@ -45,23 +52,23 @@ while opcao != 4:
                 print(f'Você acertou em {tentativas} tentativa(s)')
                 print('--' * 15)
                 acerto = True
-                pygame.mixer.music.load('audio_de_acerto.mp3')
+                pygame.mixer.music.load(os.path.join(AUDIO_DIR, 'audio_de_acerto.mp3'))
                 pygame.mixer.music.play()
             elif chute_usuario > numero_secreto:
                 print('Menos... Tente novamente.')
-                pygame.mixer.music.load('audio_adivinhacao(1).mp3')
+                pygame.mixer.music.load(os.path.join(AUDIO_DIR, 'audio_adivinhacao(1).mp3'))
                 pygame.mixer.music.play()
                 sleep(1)
             else:
                 print('Mais... Tente novamente.')
-                pygame.mixer.music.load('audio_adivinhacao(2).mp3')
+                pygame.mixer.music.load(os.path.join(AUDIO_DIR, 'audio_adivinhacao(2).mp3'))
                 pygame.mixer.music.play()
                 sleep(1)
         if not acerto:
             print('--' * 30)
             print('{:^30}'.format(f' VOCÊ ESGOTOU AS TENTATIVAS. O número era ({numero_secreto}) '))
             print('--' * 30)
-            pygame.mixer.music.load('audio_de_erro.mp3')
+            pygame.mixer.music.load(os.path.join(AUDIO_DIR, 'audio_de_erro.mp3'))
             pygame.mixer.music.play()
 
     elif opcao == 2:
@@ -76,7 +83,7 @@ while opcao != 4:
 [ 1 ] PAPEL
 [ 2 ] TESOURA''')
             if not audio_jokenpo_tocado:
-                pygame.mixer.music.load('audio_jokenpo_menu.mp3')
+                pygame.mixer.music.load(os.path.join(AUDIO_DIR, 'audio_jokenpo_menu.mp3'))
                 pygame.mixer.music.play()
                 sleep(4) 
                 audio_jokenpo_tocado = True
@@ -88,21 +95,21 @@ while opcao != 4:
                 print('--' * 17)
                 print('Opção inválida. Tente novamente.')
                 print('--' * 17)
-                pygame.mixer.music.load('audio_opcao_invalida.mp3')
+                pygame.mixer.music.load(os.path.join(AUDIO_DIR, 'audio_opcao_invalida.mp3'))
                 pygame.mixer.music.play()
                 sleep(3)
 
         print('--' * 15)
         print('JO...')
-        pygame.mixer.music.load('audio_JO.mp3')
+        pygame.mixer.music.load(os.path.join(AUDIO_DIR, 'audio_JO.mp3'))
         pygame.mixer.music.play()
         sleep(1)
         print('KEN...')
-        pygame.mixer.music.load('audio_KEN.mp3')
+        pygame.mixer.music.load(os.path.join(AUDIO_DIR, 'audio_KEN.mp3'))
         pygame.mixer.music.play()
         sleep(1)
         print('PÔ!!!')
-        pygame.mixer.music.load('audio_PO.mp3')
+        pygame.mixer.music.load(os.path.join(AUDIO_DIR, 'audio_PO.mp3'))
         pygame.mixer.music.play()
         sleep(0.5)
         print('--' * 15)
@@ -112,41 +119,41 @@ while opcao != 4:
         if computador == 0:
             if jogador == 0:
                 print('{:^30}'.format(' EMPATE '))
-                pygame.mixer.music.load('audio_de_empate.mp3')
+                pygame.mixer.music.load(os.path.join(AUDIO_DIR, 'audio_de_empate.mp3'))
                 pygame.mixer.music.play()
             elif jogador == 1:
                 print('{:^30}'.format(' VOCÊ VENCEU! '))
-                pygame.mixer.music.load('audio_de_acerto.mp3')
+                pygame.mixer.music.load(os.path.join(AUDIO_DIR, 'audio_de_acerto.mp3'))
                 pygame.mixer.music.play()
             elif jogador == 2:
                 print('{:^30}'.format(' COMPUTADOR VENCEU! '))
-                pygame.mixer.music.load('audio_de_erro.mp3')
+                pygame.mixer.music.load(os.path.join(AUDIO_DIR, 'audio_de_erro.mp3'))
                 pygame.mixer.music.play()
         elif computador == 1:
             if jogador == 0:
                 print('{:^30}'.format(' COMPUTADOR VENCEU! '))
-                pygame.mixer.music.load('audio_de_erro.mp3')
+                pygame.mixer.music.load(os.path.join(AUDIO_DIR, 'audio_de_erro.mp3'))
                 pygame.mixer.music.play()
             elif jogador == 1:
                 print('{:^30}'.format(' EMPATE! '))
-                pygame.mixer.music.load('audio_de_empate.mp3')
+                pygame.mixer.music.load(os.path.join(AUDIO_DIR, 'audio_de_empate.mp3'))
                 pygame.mixer.music.play()
             elif jogador == 2:
                 print('{:^30}'.format(' VOCÊ VENCEU! '))
-                pygame.mixer.music.load('audio_de_acerto.mp3')
+                pygame.mixer.music.load(os.path.join(AUDIO_DIR, 'audio_de_acerto.mp3'))
                 pygame.mixer.music.play()
         elif computador == 2:
             if jogador == 0:
                 print('{:^30}'.format(' VOCÊ VENCEU! '))
-                pygame.mixer.music.load('audio_de_acerto.mp3')
+                pygame.mixer.music.load(os.path.join(AUDIO_DIR, 'audio_de_acerto.mp3'))
                 pygame.mixer.music.play()
             elif jogador == 1:
                 print('{:^30}'.format(' COMPUTADOR VENCEU! '))
-                pygame.mixer.music.load('audio_de_erro.mp3')
+                pygame.mixer.music.load(os.path.join(AUDIO_DIR, 'audio_de_erro.mp3'))
                 pygame.mixer.music.play()
             elif jogador == 2:
                 print('{:^30}'.format(' EMPATE! '))
-                pygame.mixer.music.load('audio_de_empate.mp3')
+                pygame.mixer.music.load(os.path.join(AUDIO_DIR, 'audio_de_empate.mp3'))
                 pygame.mixer.music.play()
         
         pygame.mixer.music.play()
@@ -156,12 +163,12 @@ while opcao != 4:
         print('--' * 15)
         print('{:=^30}'.format(' PAR OU ÍMPAR '))
         print('--' * 15)
-        pygame.mixer.music.load('audio_digite_valor.mp3')
+        pygame.mixer.music.load(os.path.join(AUDIO_DIR, 'audio_digite_valor.mp3'))
         pygame.mixer.music.play()
         jogador = int(input('Digite um valor: '))
         computador = randint(0, 10)
         total = (jogador + computador)
-        pygame.mixer.music.load('audio_par_ou_impar.mp3')
+        pygame.mixer.music.load(os.path.join(AUDIO_DIR, 'audio_par_ou_impar.mp3'))
         pygame.mixer.music.play()
 
         tipo = ' '
@@ -178,21 +185,21 @@ while opcao != 4:
         if tipo == 'P':
             if total % 2 == 0:
                 print('{:^30}'.format(' VOCÊ ACERTOU! '))
-                pygame.mixer.music.load('audio_de_acerto.mp3')
+                pygame.mixer.music.load(os.path.join(AUDIO_DIR, 'audio_de_acerto.mp3'))
                 pygame.mixer.music.play()
             else:
                 print('{:^30}'.format(' COMPUTADOR VENCEU! '))
-                pygame.mixer.music.load('audio_de_erro.mp3')
+                pygame.mixer.music.load(os.path.join(AUDIO_DIR, 'audio_de_erro.mp3'))
                 pygame.mixer.music.play()
 
         elif tipo == 'I':
             if total % 2 == 1:
                 print('{:^30}'.format(' VOCÊ ACERTOU! '))
-                pygame.mixer.music.load('audio_de_acerto.mp3')
+                pygame.mixer.music.load(os.path.join(AUDIO_DIR, 'audio_de_acerto.mp3'))
                 pygame.mixer.music.play()
             else:
                 print('{:^30}'.format(' COMPUTADOR VENCEU! '))
-                pygame.mixer.music.load('audio_de_erro.mp3')
+                pygame.mixer.music.load(os.path.join(AUDIO_DIR, 'audio_de_erro.mp3'))
                 pygame.mixer.music.play()
         print('--' * 15)
 
@@ -200,13 +207,13 @@ while opcao != 4:
         print('--' * 15)
         print('{:^30}'.format(' FINALIZANDO...'))
         print('--' * 15)
-        pygame.mixer.music.load('audio_finalizando_programa.mp3')
+        pygame.mixer.music.load(os.path.join(AUDIO_DIR, 'audio_finalizando_programa.mp3'))
         pygame.mixer.music.play()
         sleep(2)
     else:
         print('--' * 17)
         print('Opção inválida. Tente novamente.')
         print('--' * 17)
-        pygame.mixer.music.load('audio_opcao_invalida.mp3')
+        pygame.mixer.music.load(os.path.join(AUDIO_DIR, 'audio_opcao_invalida.mp3'))
         pygame.mixer.music.play()
         sleep(3)
